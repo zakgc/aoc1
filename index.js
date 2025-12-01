@@ -10,7 +10,7 @@ function createSafe() {
 
 function rotateDial(pointer, rotation) {
     let direction = rotation[0]
-    let amount = parseInt(rotation.substring(1))
+    let amount = (parseInt(rotation.substring(1)) % 100)
     let newpointer = 0
 
     if (direction === 'R') {
