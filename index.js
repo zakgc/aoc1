@@ -37,9 +37,22 @@ function rotateDial(pointer, rotation) {
 
 function runSafeCrack(instructions) {
     createSafe()
+
+    let status = {
+        pointer: 50,
+        wasZero: false
+    }
+    let results = 0
+
     instructions.forEach(instruction => {
-      console.log(instruction)  
+        let result = rotateDial(status.pointer, instruction)
+        if (result.wasZero === true) {
+            results ++
+        }
+        status.pointer = result.newpointer
     })
+    
+    console.log(results);
 }
 
 let instructions = [
