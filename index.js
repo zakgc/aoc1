@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 let safe = []
 
 function createSafe() {
@@ -55,16 +57,7 @@ function runSafeCrack(instructions) {
     console.log(results);
 }
 
-let instructions = [
-    'L68',
-    'L30',
-    'R48',
-    'L5',
-    'R60',
-    'L55',
-    'L1',
-    'L99',
-    'R14',
-    'L82'
-]
+let instructionsTxt = fs.readFileSync('./instructions.txt', 'utf-8').replaceAll('\r', '')
+let instructions = instructionsTxt.split('\n')
+
 runSafeCrack(instructions)
