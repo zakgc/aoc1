@@ -15,15 +15,19 @@ function rotateDial(pointer, rotation) {
 
     if (direction === 'R') {
         let move = pointer + amount
+
         if (move >= 100) {
             move -= 100
+            move = move % 100
         }
 
         newpointer = safe[move]
     } else if (direction === 'L') {
         let move = pointer - amount
+
         if (move < 0) {
             move += 100
+            move = Math.abs(move % -100)
         }
 
         newpointer = safe[move]
