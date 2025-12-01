@@ -6,9 +6,37 @@ function createSafe() {
     }
 }
 
+function rotateDial(pointer, rotation) {
+    let direction = rotation[0]
+    let amount = parseInt(rotation.substring(1))
+    let newpointer = 0
+
+    if (direction === 'R') {
+        let move = pointer + amount
+        if (move >= 100) {
+            move -= 100
+        }
+
+        newpointer = safe[move]
+    } else if (direction === 'L') {
+        let move = pointer - amount
+        if (move < 0) {
+            move += 100
+        }
+
+        newpointer = safe[move]
+    }
+
+    wasZero = newpointer === 0
+
+    return {
+        newpointer,
+        wasZero
+    }
+}
+
 function runSafeCrack() {
     createSafe()
-    console.log(safe)
 }
 
 runSafeCrack()
