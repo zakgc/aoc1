@@ -33,11 +33,14 @@ function rotateDial(pointer, rotation) {
         newpointer = safe[move]
     }
 
-    wasZero = newpointer === 0
+    let amountZero = 0
+    if (newpointer === 0) {
+        amountZero ++
+    }
 
     return {
         newpointer,
-        wasZero
+        amountZero
     }
 }
 
@@ -46,19 +49,16 @@ function runSafeCrack(instructions) {
 
     let status = {
         pointer: 50,
-        wasZero: false
+        amountZero: 0
     }
-    let results = 0
 
     instructions.forEach(instruction => {
         let result = rotateDial(status.pointer, instruction)
-        if (result.wasZero === true) {
-            results ++
-        }
+        status.amountZero += result.amountZero
         status.pointer = result.newpointer
     })
     
-    console.log(results);
+    console.log(status.amountZero);
 }
 
 let instructionsTxt = fs.readFileSync('./instructions.txt', 'utf-8').replaceAll('\r', '')
