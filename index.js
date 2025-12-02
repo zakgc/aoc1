@@ -21,6 +21,40 @@ function formatInstructions(instructions) {
     })
 }
 
+function rotateDialPart1(startingPoint, instruction){
+    let direction = instruction.direction
+    let amount = (instruction.amount % 100)
+    let endPoint = 0
+
+    if (direction === 'R') {
+        let move = startingPoint + amount
+
+        if (move >= 100) {
+            move -= 100
+        }
+
+        endPoint = safe[move]
+    } else if (direction === 'L') {
+        let move = startingPoint - amount
+
+        if (move < 0) {
+            move += 100
+        }
+
+        endPoint = safe[move]
+    }
+
+    let amountZero = 0
+    if (endPoint === 0) {
+        amountZero ++
+    }
+
+    return {
+        endPoint,
+        amountZero
+    }
+}
+
 function rotateDial(pointer, rotation) {
     let direction = rotation[0]
     let amount = (parseInt(rotation.substring(1)) % 100)
