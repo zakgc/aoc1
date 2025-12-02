@@ -55,6 +55,12 @@ function rotateDialPart1(startingPoint, instruction){
     }
 }
 
+function rotateDialPart2(instruction) {
+    let fullRotation = Math.floor(instruction.amount / safe.length)
+
+    return fullRotation
+}
+
 function rotateDial(pointer, rotation) {
     let direction = rotation[0]
     let amount = (parseInt(rotation.substring(1)) % 100)
