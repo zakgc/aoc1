@@ -106,10 +106,11 @@ function runSafeCrack(instructions) {
         amountZero: 0
     }
 
-    instructions.forEach(instruction => {
-        let result = rotateDial(status.pointer, instruction)
+    instructionsArr.forEach(instruction => {
+        let result = rotateDialPart1(status.pointer, instruction)
+        status.amountZero += rotateDialPart2(instruction)
         status.amountZero += result.amountZero
-        status.pointer = result.newpointer
+        status.pointer = result.endPoint
     })
     
     console.log(status.amountZero);
