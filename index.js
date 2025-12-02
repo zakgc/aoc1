@@ -1,11 +1,24 @@
 var fs = require('fs');
 
 let safe = []
+let instructionsArr = []
 
 function createSafe() {
     for (let i = 0; i < 100; i++) {
        safe.push(i)
     }
+}
+
+function formatInstructions(instructions) {
+    instructions.forEach(instruction => {
+        let direction = instruction[0]
+        let amount = parseInt(instruction.substring(1))
+    
+        instructionsArr.push({
+            direction,
+            amount
+        })
+    })
 }
 
 function rotateDial(pointer, rotation) {
@@ -46,6 +59,7 @@ function rotateDial(pointer, rotation) {
 
 function runSafeCrack(instructions) {
     createSafe()
+    formatInstructions(instructions)
 
     let status = {
         pointer: 50,
